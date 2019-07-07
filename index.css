@@ -1,0 +1,128 @@
+
+/* TODO: REMOVE UNUSED FONT WEIGHTS */
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400|Roboto:300,400,700|Space+Mono:400,700&display=swap');
+
+:root {
+  --main-bg-color: #FFFFF;
+  --accent-color: #009AA6;
+  --accent-color-b: #B19428;
+  --accent-color-c: #AE4D29;
+  --font-heading: 'Space Mono', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+
+html {
+ font-family: var(--font-body);
+ font-weight: 300;
+ font-size: 1em;
+}
+
+
+@media (min-width: 1000px) {
+  html {
+    font-size: 1.25em;
+  }
+}
+
+
+
+.nav-links {
+  width: 90%;
+  margin: 1em auto;
+  font-size: 1.333em;
+  color: var(--accent-color);
+  font-family: var(--font-body);
+  font-weight: 400;
+  text-transform: lowercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links img {
+  height: 72px;
+  align-self: flex-end;
+}
+
+.nav-links span {
+  display: inline-block;
+  margin-right: 2em;
+}
+
+.content {
+  width: 90%;
+  margin: 2em auto;
+  font-size: 1.333em;
+  position: relative;
+}
+
+.content .intro {
+
+}
+
+.content h2 {
+  font-size: 1.5em;
+  position: relative;
+}
+
+.content > div {
+  margin: 8em 0;
+  /* width: 90%; */
+}
+
+@media (min-width: 1000px) {
+  .content {
+    width: 70%;
+    /* width: calc(.9 * 1000px); */
+  }
+}
+
+.container {
+  overflow:hidden;
+}
+
+.content h2 > svg {
+  position: absolute;
+  left: -400px;
+  top: calc(-200px + 1em);
+}
+
+body {
+  margin: 0;
+}
+
+#container {
+  position: relative;
+}
+
+#container > svg {
+  /* width: 2000px; */
+  /* height: 400px; */
+  /* height: 0px; */
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.timeline .quote {
+  /* font-style: italic; */
+}
+
+.timeline p:not(:first-of-type) {
+  margin: 3em 0;
+}
+
+.timeline .student {
+  font-weight: 700;
+}
+
+footer {
+  height: 100px;
+}
