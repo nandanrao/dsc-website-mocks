@@ -75,11 +75,11 @@ html {
 }
 
 .portfolio > div .logos {
-  margin: 1em 0 0 0;
+  margin: 10px 0 0 0;
 }
 
 .portfolio > div:nth-child(even) {
-  background-color: rgb(0, 154, 166, .75);
+  background-color: rgb(177, 148, 40, .75);
 }
 
 .portfolio > div:nth-child(even) {
@@ -102,7 +102,7 @@ html {
 
 .portfolio > div:nth-child(odd) {
   margin-right: 20%;
-  background-color: rgb(177, 148, 40, .75);
+  background-color: rgb(0, 154, 166, .75);
 }
 
 .portfolio > div:nth-child(odd) h2 > svg {
@@ -186,17 +186,29 @@ footer {
   line-height: 1.333em;
 }
 
+.portfolio .logos {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.portfolio > div:nth-child(even) .logos {
+  justify-content: flex-start;
+}
+
+
 .portfolio .logos img{
   /* width: 70%; */
-  max-height: 150px;
-  max-width: 70%;
-
+  align-self: center;
+  max-height: 120px;
+  margin: 0 1em;
+  max-width: 50%;
+  display: inline-block;
 }
 
 .portfolio .portfolio-image {
   width: 45%;
   display: inline-block;
-
 }
 
 .portfolio .portfolio-image img {
