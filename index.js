@@ -48,7 +48,7 @@
     };
   };
 
-  function plotDensity(element, width, height, random, color, left=false) {
+  function plotDensity(element, width, height, random, color, densityplier, left=false) {
     var svg = d3.select(element)
         .append('svg')
         .attr('class', 'densities')
@@ -61,23 +61,23 @@
         .domain([-20, 120]) // the -20 should be parameterized? Navbar?
         .range([0, height]);
 
-    var kde = kernelDensityEstimator(kernelEpanechnikov(20), x.ticks(100))
+    var kde = kernelDensityEstimator(kernelEpanechnikov(25), x.ticks(100))
     var data = Array(200).fill(1).map(x => random()).filter(x => x < 95 && x > 0)
     var density = kde(data)
 
     var widthRange = left ? [0, width] : [width, 0];
 
     var y = d3.scaleLinear()
-        .domain([0, .1])
+        .domain([0, densityplier])
         .range(widthRange)
 
 
     svg.append("path")
       .attr("class", "mypath")
       .datum(density)
-      .attr("fill", color.fill)
+      .attr("fill", "transparent")
       .attr("stroke", color.stroke)
-      .attr("stroke-width", 0)
+      .attr("stroke-width", 5)
       .attr("stroke-linejoin", "round")
       .attr("d",  d3.line()
             .curve(d3.curveBasis)
@@ -87,11 +87,11 @@
       .attr("opacity", ".4")
   };
 
-  function densityBorder(element, width, height, colors, num) {
+  function densityBorder(element, width, height, colors, num, densityplier) {
     for (var i = 0; i <= num; i++) {
       var mean = d3.randomUniform(0, 80)();
       var sd = d3.randomUniform(15, 25)();
-      plotDensity(element, width, height, d3.randomNormal(mean,sd), colors[i%3])
+      plotDensity(element, width, height, d3.randomNormal(mean,sd), colors[i%3], densityplier)
     }
   }
 
@@ -127,11 +127,14 @@ window.addEventListener('load', (event) => {
                   {fill: "rgb(0, 154, 166, .25)", stroke: "rgb(0, 154, 166, .75)"},
                   {fill: "rgb(174, 77, 41, .25)", stroke: "rgb(174, 77, 41, .75)"}]
 
-    var num = width > 1000 ? 10 : 6;
+    var num = width > 1000 ? 12 : 8;
+    var densityplier = d3.scaleLinear().domain([360, 1800]).range([0.05, 0.15])
     var width = document.body.offsetWidth;
     var height = document.body.scrollHeight;
 
-    DSC.densityBorder(document.getElementById("container"), width, height, colors, num)
+    console.log(densityplier(width))
+
+    DSC.densityBorder(document.getElementById("container"), width, height, colors, num, densityplier(width))
 
     Array
       .from(document.getElementsByTagName('h2'))
