@@ -132,8 +132,6 @@ window.addEventListener('load', (event) => {
     var width = document.body.offsetWidth;
     var height = document.body.scrollHeight;
 
-    console.log(densityplier(width))
-
     DSC.densityBorder(document.getElementById("container"), width, height, colors, num, densityplier(width))
 
     Array
