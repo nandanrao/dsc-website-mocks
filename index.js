@@ -85,13 +85,14 @@
             .y(function(d) { return x(d.x); })
            )
       .attr("opacity", ".4")
+      .attr("z-index", "-1")
   };
 
-  function densityBorder(element, width, height, colors, num, densityplier) {
+  function densityBorder(element, width, height, colors, num, densityplier, left=false) {
     for (var i = 0; i <= num; i++) {
       var mean = d3.randomUniform(0, 80)();
       var sd = d3.randomUniform(15, 25)();
-      plotDensity(element, width, height, d3.randomNormal(mean,sd), colors[i%3], densityplier)
+      plotDensity(element, width, height, d3.randomNormal(mean,sd), colors[i%3], densityplier, left)
     }
   }
 
@@ -102,6 +103,7 @@
         .attr("width", width)
         .attr("height", height)
         .append("g")
+        .attr("id", "datacloud")
 
     svg.selectAll('dot')
       .data(Array(dots).fill(1).map(d => ({x: d3.randomNormal(width/2, width/10)(), y: d3.randomNormal(height/2, height/10)(), color: choice(colors)})))
@@ -118,25 +120,3 @@
   window.DSC = { dataCloud: dataCloud, densityBorder: densityBorder }
 
 })(window)
-
-
-window.addEventListener('load', (event) => {
-  setTimeout(() => {
-
-    var colors = [{fill: "rgb(177, 148, 40, .25)", stroke: "rgb(177, 148, 40, .75)"},
-                  {fill: "rgb(0, 154, 166, .25)", stroke: "rgb(0, 154, 166, .75)"},
-                  {fill: "rgb(174, 77, 41, .25)", stroke: "rgb(174, 77, 41, .75)"}]
-
-    var num = width > 1000 ? 12 : 8;
-    var densityplier = d3.scaleLinear().domain([360, 1800]).range([0.05, 0.15])
-    var width = document.body.offsetWidth;
-    var height = document.body.scrollHeight;
-
-    DSC.densityBorder(document.getElementById("container"), width, height, colors, num, densityplier(width))
-
-    Array
-      .from(document.getElementsByTagName('h2'))
-      .forEach(e => DSC.dataCloud(e, 800, 400, 85, colors))
-
-  }, 0)
-});

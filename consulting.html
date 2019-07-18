@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GSE BARCELONA - LMTR - My WordPress Website</title>
+    <link rel="stylesheet" href="index.css"/>
+
+  </head>
+
+  <body>
+    <!-- <canvas id="canvas"></canvas> -->
+    <div class="container" id="container">
+    <div class="nav">
+      <div class="nav-links">
+        <img src="https://www.barcelonagse.eu/logo-bgse.png" />
+        <div>
+          <span> Portfolio </span>
+          <span> Blog </span>
+        </div>
+      </div>
+
+<clipPath id="clipping">
+  <polygon points="98.4999978 153.75..."/>
+</clipPath>
+
+    </div>
+    <div>
+      <div class="intro">
+        <h1>What data are you working with?</h1>
+
+      </div>
+      <div class="intro">
+        <p>
+          From finding genes that cause cancer to finding improvements in diabetes patients, from understanding what politicians do on social media to predicting real-estate prices, from recommendation systems to causal inference, from deep learning to Bayesian model selection, our network of researchers, practitioners, statisticians, and data scientists are experienced in working on challenging problems within both industry and academia.
+        </p>
+
+      </div>
+
+
+      <div class="portfolio">
+        <div>
+          <h2> Learning From Patient-Generated Data </h2>
+          <p>Many healthcare institutions are now trying to work with patient-generated data from at-home devices and mobile applications. Recovering accurate measures of patient health from this noisy data with honest uncertainty quantification, however, is a statistical challenge many companies and research institutions are failing. Kannact, a healthcare technology startup in the US focused on population management of diabetes and other chronic patients, approached the Data Science Center for help in smarter usage of their patient-generated data to help coach their diabetes patients. We teamed up with Accenture’s Applied Intelligence unit to develop a solution that solved the core problem we saw with Kannact’s workflow: accurately inferring the type of glucose reading from partially-labelled data and modelling medium-term trends in disease evolution to assess program effectiveness.
+          </p>
+          <div class="logos">
+            <img src="images/accenture.png">
+          </div>
+          <!-- <div class="portfolio-image"> -->
+          <!--   <img src="images/accenture-kannact-screenshot.png"> -->
+          <!-- </div> -->
+        </div>
+        <div>
+          <h2> How do Political Parties Use Twitter? </h2>
+          <p>Nobody doubts the importance of Twitter in influencing the outcome of elections. Understanding exactly how that influence is exerted, and by whom, is the question that the Reuters Institute for the Study of Journalism at Oxford University wanted to answer. They approached the Center for help in both collecting tens of millions of tweets during elections around the world, as well as analysing the content and interactions of the users. Together, we developed novel statistical methods for measuring engagement effectiveness of individuals and parties and mapped the topics of conversation into several dimensions to examine similarity and differences between parties.</p>
+          <div class="logos">
+            <img src="images/reuters-oxford.png">
+          </div>
+          <!-- <div class="portfolio-image"> -->
+          <!--   <img src="images/biplots.png"> -->
+          <!-- </div> -->
+        </div>
+      </div>
+
+      <footer>
+        <ul>
+          <li> contact </li>
+        </ul>
+      </footer>
+    </div>
+    </div>
+    <!-- SCRIPTS -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="index.js"></script>
+    <script>
+
+
+      window.addEventListener('load', (event) => {
+        setTimeout(() => {
+
+          var colors = [{fill: "rgb(177, 148, 40, .25)", stroke: "rgb(177, 148, 40, .75)"},
+                        {fill: "rgb(0, 154, 166, .25)", stroke: "rgb(0, 154, 166, .75)"},
+                        {fill: "rgb(174, 77, 41, .25)", stroke: "rgb(174, 77, 41, .75)"}]
+
+          var num = width > 1000 ? 12 : 8;
+          var densityplier = d3.scaleLinear().domain([360, 1800]).range([0.1, 0.20])
+          var width = document.body.offsetWidth;
+          var height = document.body.scrollHeight;
+
+          DSC.densityBorder(document.getElementById("container"), width, height, colors, num, densityplier(width))
+
+          DSC.densityBorder(document.getElementById("container"), width, height, colors, num, densityplier(width), true)
+
+
+        }, 0)
+      });
+
+
+    </script>
+
+  </body>
+</html>

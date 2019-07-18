@@ -25,7 +25,9 @@
     </div>
     <div class="content">
       <div class="intro">
-        <h2>What is Data Science?</h2>
+        <h1>What is Data Science?</h1>
+      </div>
+      <div class="intro">
         <p>
           Data Science is statistics: reborn, rethought, and rebranded. For 19th century statisticians, data was a theoretical concept they held in their minds and described in hand-written formulas. In the 21st, it is a new resource, produced daily and gathered at the speed of light. Computing brought new goals and new possibilities, which in turn, brought a new science. This is the science we teach at the Data Science Center at BGSE: it is statistics first and foremost, but equally importantly, it is useful in today's world.
         </p>
@@ -61,6 +63,32 @@
     <!-- SCRIPTS -->
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="index.js"></script>
+    <script>
+
+
+      window.addEventListener('load', (event) => {
+        setTimeout(() => {
+
+          var colors = [{fill: "rgb(177, 148, 40, .25)", stroke: "rgb(177, 148, 40, .75)"},
+                        {fill: "rgb(0, 154, 166, .25)", stroke: "rgb(0, 154, 166, .75)"},
+                        {fill: "rgb(174, 77, 41, .25)", stroke: "rgb(174, 77, 41, .75)"}]
+
+          var num = width > 1000 ? 12 : 8;
+          var densityplier = d3.scaleLinear().domain([360, 1800]).range([0.05, 0.15])
+          var width = document.body.offsetWidth;
+          var height = document.body.scrollHeight;
+
+          DSC.densityBorder(document.getElementById("container"), width, height, colors, num, densityplier(width))
+
+          Array
+            .from(document.getElementsByTagName('h2'))
+            .forEach(e => DSC.dataCloud(e, 800, 400, 85, colors))
+
+        }, 0)
+      });
+
+
+    </script>
 
   </body>
 </html>
